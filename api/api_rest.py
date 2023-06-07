@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, request
 import mysql.connector
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)  # Habilitar o CORS para todas as rotas
 
 # Configurações do banco de dados
 db_config = {
