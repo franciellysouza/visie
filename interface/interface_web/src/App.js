@@ -80,13 +80,13 @@ function IndexPage() {
           </thead>
           <tbody>
             {pessoas.map((pessoa) => (
-              <tr key={pessoa.id_pessoa}>
-                <td>{pessoa.nome}</td>
-                <td>{pessoa.data_admissao}</td>
+              <tr key={pessoa[0]}>
+                <td>{pessoa[1]}</td>
+                <td>{pessoa[5]}</td>
                 <td>
-                  <button onClick={() => handleVerMais(pessoa.id_pessoa)}>Ver Mais</button>
+                  <button onClick={() => handleVerMais(pessoa[0])}>Ver Mais</button>
                   <button onClick={handleEditar}>Editar</button>
-                  <button onClick={() => handleExcluir(pessoa.id_pessoa)}>Excluir</button>
+                  <button onClick={() => handleExcluir(pessoa[0])}>Excluir</button>
                 </td>
               </tr>
             ))}
@@ -115,13 +115,13 @@ function IndexPage() {
     return (
       <div>
         <h2>Registro Selecionado</h2>
-        <p>Nome: {registroSelecionado.nome}</p>
-        <p>RG: {registroSelecionado.rg}</p>
-        <p>CPF: {registroSelecionado.cpf}</p>
-        <p>Data de Nascimento: {registroSelecionado.data_nascimento}</p>
-        <p>Data de Admissão: {registroSelecionado.data_admissao}</p>
+        <p>Nome: {registroSelecionado[1]}</p>
+        <p>RG: {registroSelecionado[2]}</p>
+        <p>CPF: {registroSelecionado[3]}</p>
+        <p>Data de Nascimento: {registroSelecionado[4]}</p>
+        <p>Data de Admissão: {registroSelecionado[5]}</p>
         <button onClick={handleEditar}>Editar</button>
-        <button onClick={() => handleExcluir(registroSelecionado.id_pessoa)}>Excluir</button>
+        <button onClick={() => handleExcluir(registroSelecionado[0])}>Excluir</button>
       </div>
     );
   };
@@ -136,29 +136,29 @@ function IndexPage() {
         <h2>Atualizar Dados do Registro</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <label>Nome:</label>
-          <input type="text" name="nome" defaultValue={registroSelecionado.nome} />
+          <input type="text" name="nome" defaultValue={registroSelecionado[1]} />
 
           <label>RG:</label>
-          <input type="text" name="rg" defaultValue={registroSelecionado.rg} />
+          <input type="text" name="rg" defaultValue={registroSelecionado[2]} />
 
           <label>CPF:</label>
-          <input type="text" name="cpf" defaultValue={registroSelecionado.cpf} />
+          <input type="text" name="cpf" defaultValue={registroSelecionado[3]} />
 
           <label>Data de Nascimento:</label>
           <input
             type="date"
             name="data_nascimento"
-            defaultValue={registroSelecionado.data_nascimento}
+            defaultValue={registroSelecionado[4]}
           />
 
           <label>Data de Admissão:</label>
           <input
             type="date"
             name="data_admissao"
-            defaultValue={registroSelecionado.data_admissao}
+            defaultValue={registroSelecionado[5]}
           />
 
-          <button onClick={() => handleAtualizar(registroSelecionado.id_pessoa, {
+          <button onClick={() => handleAtualizar(registroSelecionado[0], {
             nome: document.getElementsByName('nome')[0].value,
             rg: document.getElementsByName('rg')[0].value,
             cpf: document.getElementsByName('cpf')[0].value,

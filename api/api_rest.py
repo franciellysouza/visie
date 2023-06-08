@@ -27,6 +27,18 @@ def get_pessoas():
     pessoas = cursor.fetchall()
     cursor.close()
     connection.close()
+    print(pessoas)
+    return jsonify(pessoas)
+
+@app.route('/api/pessoas/<int:id_pessoa>', methods=['GET'])
+def get_pessoa(id_pessoa):
+    connection = get_database_connection()
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM pessoas where pessoas.id_pessoa = '+str(id_pessoa))
+    pessoas = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    print(pessoas)
     return jsonify(pessoas)
 
 @app.route('/api/pessoas', methods=['POST'])
